@@ -1,4 +1,4 @@
-const {Cotizaciones, Usuarios} = require('../db.js')
+const {Cotizaciones, Usuarios, Vehiculos} = require('../db.js')
 
 async function getUserId(email){
     const userId = await Usuarios.findOne({where:{email:email}})
@@ -79,7 +79,10 @@ exports.getQuote = async (req,res) => {
 
 exports.getAllQuotes = async (req,res) => {
     try {
-        const quotes = await Cotizaciones.findAll()
+        const quotes = await Cotizaciones.findAll({include: 
+            [Usuarios,Vehiculos]
+        })
+        
         if(!quotes.length > 0) return res.status(400).json({message:'no hay cotizaciones', cotizaciones:false})
         return res.status(200).json({message:'cotizaciones obtenidas', cotizaciones:quotes})
     } catch (error) {
