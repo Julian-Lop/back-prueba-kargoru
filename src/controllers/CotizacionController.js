@@ -70,7 +70,7 @@ exports.getQuote = async (req,res) => {
     const{id} = req.params
     try {
         if(!id) return res.status(400).json({message:'faltan datos', cotizacion:false})
-        const quote = await Cotizaciones.findOne({where:{id:id}})
+        const quote = await Cotizaciones.findOne({include:[Usuarios,Vehiculos],where:{id:id}})
         return res.status(200).json({message:'cotizacion obtenida', cotizacion:quote})
     } catch (error) {
         return res.status(500).json({message:error})
