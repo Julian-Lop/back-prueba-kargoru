@@ -55,7 +55,7 @@ exports.editQuote = async (req,res) => {
 }
 
 exports.deleteQuote = async (req,res) => {
-    const {id} = req.body
+    const {id} = req.params
     try {
         if(!id) return res.status(400).json({message:'falta el id',borrado:false})
         const quoteDeleted = await Cotizaciones.findOne({where:{id:id}})

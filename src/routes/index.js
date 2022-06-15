@@ -17,7 +17,7 @@ router.get('/getAllLocations', getAllLocations)
 //quotes
 router.post('/createQuote', createQuote)
 router.put('/editQuote', editQuote)
-router.delete('/deleteQuote', deleteQuote)
+router.delete('/deleteQuote/:id', deleteQuote)
 router.get('/getQuote/:id', getQuote)
 router.get('/getAllQuotes', getAllQuotes)
 module.exports = router
