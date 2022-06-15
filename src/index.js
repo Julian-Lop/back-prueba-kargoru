@@ -1,5 +1,7 @@
 const app = require('./app')
+const {conn} = require('./db.js')
 
-app.listen(app.get('port'))
-
-console.log('server on port', app.get('port'))
+conn.sync({force:false}).then(()=>{
+    app.listen(app.get('port'))
+    console.log('server on port', app.get('port'))
+})
