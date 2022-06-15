@@ -5,5 +5,6 @@ module.exports = (sequelize) => {
         nombre : {
             type: DataTypes.STRING
         }
-    })
+    },
+    {timestamps:false})
 }
