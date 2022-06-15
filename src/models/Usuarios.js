@@ -11,5 +11,6 @@ module.exports = (sequelize) => {
         celular : {
             type: DataTypes.STRING
         }
-    })
+    },
+    {timestamps:false})
 }
