@@ -16,6 +16,9 @@ module.exports = (sequelize) => {
         },
         costo : {
             type: DataTypes.INTEGER
+        },
+        detalleCarga : {
+            type: DataTypes.STRING
         }
     },
     {timestamps:false})
