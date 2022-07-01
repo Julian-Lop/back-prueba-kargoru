@@ -7,19 +7,18 @@ async function getUserId(email){
 
 exports.createQuotation = async (req,res) => {
     const {email,origen,
-        destino,fechaSalida,fechaLlegada,
+        destino,fechaSalida,
         vehiculo,costo,detalleCarga} = req.body
 
     try {
         if(!email || !origen
-            || !destino || !fechaSalida || !fechaLlegada
+            || !destino || !fechaSalida
             || !vehiculo || !costo || !detalleCarga) return res.status(400).json({message:'faltan datos'})
         
         let quotation = await Cotizaciones.create({
             origenId:origen,
             destinoId:destino,
             fechaSalida:fechaSalida,
-            fechaLlegada:fechaLlegada,
             costo:costo,
             usuarioId: await getUserId(email),
             vehiculoId:vehiculo,
@@ -33,7 +32,7 @@ exports.createQuotation = async (req,res) => {
 
 exports.editQuotation = async (req,res) => {
     const {id,email,origen,
-        destino,fechaSalida,fechaLlegada,
+        destino,fechaSalida,
         vehiculo,costo,detalleCarga} = req.body
     try {
         if(!id) return res.status(400).json({message:'faltan datos'})
@@ -42,7 +41,6 @@ exports.editQuotation = async (req,res) => {
             origenId:origen,
             destinoId:destino,
             fechaSalida,
-            fechaLlegada,
             costo,
             usuarioId:await getUserId(email),
             vehiculoId:vehiculo,

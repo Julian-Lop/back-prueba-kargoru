@@ -11,9 +11,6 @@ module.exports = (sequelize) => {
         fechaSalida : {
             type: DataTypes.DATEONLY
         },
-        fechaLlegada : {
-            type: DataTypes.DATEONLY
-        },
         costo : {
             type: DataTypes.INTEGER
         },
