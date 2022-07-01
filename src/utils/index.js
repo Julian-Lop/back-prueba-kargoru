@@ -1,6 +1,6 @@
 const {Vehiculos,Lugares} = require('../db')
 
-const vehicles = [{nombre:'sedan'},{nombre:'bus'},{nombre:'microbus'}]
+const vehicles = [{nombre:'terrestre'},{nombre:'aereo'}]
 const locations = [
     {nombre:'Bogota'},{nombre:'Cali'},{nombre:'Medellin'},
     {nombre:'Manizales'},{nombre:'Barranquilla'},{nombre:'Buenaventura'},

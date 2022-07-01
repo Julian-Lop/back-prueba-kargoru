@@ -8,12 +8,12 @@ async function getUserId(email){
 exports.createQuotation = async (req,res) => {
     const {email,origen,
         destino,fechaSalida,fechaLlegada,
-        vehiculo,costo} = req.body
+        vehiculo,costo,detalleCarga} = req.body
 
     try {
         if(!email || !origen
             || !destino || !fechaSalida || !fechaLlegada
-            || !vehiculo || !costo) return res.status(400).json({message:'faltan datos'})
+            || !vehiculo || !costo || !detalleCarga) return res.status(400).json({message:'faltan datos'})
         
         let quotation = await Cotizaciones.create({
             origenId:origen,
@@ -22,7 +22,8 @@ exports.createQuotation = async (req,res) => {
             fechaLlegada:fechaLlegada,
             costo:costo,
             usuarioId: await getUserId(email),
-            vehiculoId:vehiculo
+            vehiculoId:vehiculo,
+            detalleCarga
         })
         return res.status(201).json({message:'creado', cotizacion:quotation})  
     } catch (error) {
@@ -33,7 +34,7 @@ exports.createQuotation = async (req,res) => {
 exports.editQuotation = async (req,res) => {
     const {id,email,origen,
         destino,fechaSalida,fechaLlegada,
-        vehiculo,costo} = req.body
+        vehiculo,costo,detalleCarga} = req.body
     try {
         if(!id) return res.status(400).json({message:'faltan datos'})
         let quotationEdited = await Cotizaciones.findOne({where:{id:id}})
@@ -44,7 +45,8 @@ exports.editQuotation = async (req,res) => {
             fechaLlegada,
             costo,
             usuarioId:await getUserId(email),
-            vehiculoId:vehiculo
+            vehiculoId:vehiculo,
+            detalleCarga
         })
 
         quotationEdited = await quotationEdited.save()
